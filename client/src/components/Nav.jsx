@@ -33,17 +33,15 @@ const NavLinks = () => {
       }
     }
 
+  // Nav links
   return (
     <>
-        {/* <NavLink className='hover:underline px-10' to='/'>Home</NavLink>
-        <NavLink className='hover:underline px-10' to='/sign-in'>Sign In</NavLink> */}
         {currentUser ? (
             // If user authenticated, show these options in nav
             <>
                 <NavLink className='hover:underline hover:text-electric-300 px-10 font-teko text-2xl' to='/workout'>My Workout</NavLink>
                 <NavLink className='hover:underline hover:text-electric-300 px-10 font-teko text-2xl' to='/create-workout'>Create Workout</NavLink>
                 <NavLink className='hover:underline hover:text-electric-300 px-10 font-teko text-2xl' to='/profile'>Profile</NavLink>
-                {/* <NavLink className='hover:underline px-10' to='/sign-out'>Profile</NavLink> */}
                 <span onClick={handleSignOut} className='hover:underline hover:cursor-pointer hover:text-electric-300 list-none px-10 font-teko text-2xl'>Sign Out</span>  
             </>
         ) : (

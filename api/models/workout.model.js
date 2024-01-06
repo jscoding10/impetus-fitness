@@ -9,15 +9,15 @@ const workoutSchema = new mongoose.Schema(
     },
     reps: {
       type: String,
-      required: true,
+      required: false,
     },
     sets: {
       type: String,
-      required: true,
+      required: false,
     },
     load: {
       type: String,
-      required: true,
+      required: false,
     },
     category: {
       type: String,
@@ -25,7 +25,7 @@ const workoutSchema = new mongoose.Schema(
     },
     duration: { 
       type: String,
-      required: true,
+      required: false,
     },
     userRef: {
         type: String,

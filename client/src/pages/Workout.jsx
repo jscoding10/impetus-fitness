@@ -69,11 +69,11 @@ export default function Workout() {
             <p className='' key={workout._id + 2}>{workout.duration} minutes</p>
           </div>
           )}
-          <div className='hover:text-electric-300'>
-            <Link to={`/update-workout/${workout._id}`}>
-              <FileEdit className='mx-2 mt-1' />
+          <button>
+            <Link className='hover:text-electric-300' to={`/update-workout/${workout._id}`}>
+              <FileEdit className='mx-2' />
             </Link>
-          </div>
+          </button>
           <button className='hover:text-electric-300'>
             <Trash2 className='mx-2'  onClick={() => handleDeleteWorkout(workout._id)}/>
           </button>

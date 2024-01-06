@@ -82,8 +82,6 @@ export default function SignUp() {
             id='password'
             onChange={handleChange}
           />
-          
-
           <button
             disabled={loading}
             className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'
@@ -92,18 +90,11 @@ export default function SignUp() {
           </button>
         </form>
       <div className="flex gap-2 mt-5">
-        <p className='text-heather-gray-300 font-teko text-lg'>Have an account?</p>
+        <p className='text-heather-gray-300 font-teko text-xl'>Have an account?</p>
         <Link to={"/sign-in"}>
-          <span className='text-electric-300 font-teko text-lg hover:underline'>Sign in</span>
+          <span className='text-electric-300 font-teko text-xl hover:underline'>Sign in</span>
         </Link>
       </div>
     </div>
   )
 }
-
-{/* <form className='flex flex-col gap-4'>
-        <input type="text" placeholder='username' className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950' id='username' />
-        <input type="email" placeholder='email' className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950' id='email' />
-        <input type="password" placeholder='password' className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950' id='password' />
-        <button className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300'>Sign up</button>
-      </form> */}

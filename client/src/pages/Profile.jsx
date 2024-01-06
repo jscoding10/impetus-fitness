@@ -17,11 +17,11 @@ export default function Profile() {
   
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [workoutData, setworkoutData] = useState({});
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setworkoutData({ ...workoutData, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -33,7 +33,7 @@ export default function Profile() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(workoutData),
       });
       const data = await res.json();
       if (data.success === false) {
@@ -85,8 +85,7 @@ export default function Profile() {
   <div className='p-3 max-w-lg mx-auto'>
     <h1 className='text-center my-7 text-electric-300 font-teko text-6xl'>Profile</h1>
     <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
-      {/* <img src={currentUser.avatar} alt="profile" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' /> */}
-      <p className='font-teko text-lg text-electric-300'>First Name:</p>
+      <p className='font-teko text-xl text-electric-300'>First Name:</p>
       <input
         type='text'
         placeholder='First Name'
@@ -95,7 +94,7 @@ export default function Profile() {
         id='firstName'
         onChange={handleChange}
       />
-      <p className='font-teko text-lg text-electric-300'>Last Name:</p>
+      <p className='font-teko text-xl text-electric-300'>Last Name:</p>
       <input
         type='text'
         placeholder='Last Name'
@@ -104,7 +103,7 @@ export default function Profile() {
         id='lastName'
         onChange={handleChange}
       />
-      <p className='font-teko text-lg text-electric-300'>Username:</p>
+      <p className='font-teko text-xl text-electric-300'>Username:</p>
       <input 
         type="text" 
         placeholder='Username' 
@@ -113,7 +112,7 @@ export default function Profile() {
         className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
         onChange={handleChange}  
       />
-      <p className='font-teko text-lg text-electric-300'>Email:</p>
+      <p className='font-teko text-xl text-electric-300'>Email:</p>
       <input 
         type="email" 
         placeholder='Email' 
@@ -122,7 +121,7 @@ export default function Profile() {
         className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg' 
         onChange={handleChange} 
       />
-      <p className='font-teko text-lg text-electric-300'>Password:</p>
+      <p className='font-teko text-xl text-electric-300'>Password:</p>
       <input 
         type="password" 
         placeholder='Password'
@@ -145,7 +144,6 @@ export default function Profile() {
         Delete account</span>
     <span onClick={handleSignOut} className='text-electric-300 cursor-pointer hover:underline font-teko text-xl'>Sign out</span>
   </div>
-
   <p className='text-electric-300 mt-5 text-center font-teko text-lg'>{error ? error : ''}</p>
   <p className='text-electric-300 mt-5 text-center font-teko text-lg'>
     {updateSuccess ? 'Profile updated successfully!' : ''}

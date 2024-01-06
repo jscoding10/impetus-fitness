@@ -10,7 +10,6 @@ export default function Header() {
     <header className="sticky top-0 flex-wrap z-[20] mx-auto flex w-full items-center justify-between p-8 bg-cinder-950">
         <Logo />
           <div>
-
           </div>
         <Nav />
     </header>
