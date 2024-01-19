@@ -1,10 +1,11 @@
+// Create Workout Page 
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function CreateWorkout() {
-  // Current user
+  // Current user from Redux
   const { currentUser } = useSelector((state) => state.user);
   // Initialize use navigate
   const navigate = useNavigate();
@@ -26,22 +27,23 @@ export default function CreateWorkout() {
   const handleChange = (e) => {
       setworkoutData({
         ...workoutData,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value, 
       });
   };
 
-  // Handle submit - POST request to database on create route with data from workout category and form 
+  // Handle submit - POST request to api on create route with data from workout category and form 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(false);
-      // POST request to database
+      // POST request to api to create workout
       const res = await fetch('/api/workout/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Send workout data and user ref
         body: JSON.stringify({
           ...workoutData,
           userRef: currentUser._id,
@@ -65,7 +67,7 @@ export default function CreateWorkout() {
     <main className='p-3 max-w-xl mx-auto'>
       <h1 className='text-3xl text-electric-300 text-center my-7 font-teko text-6xl'>
         Create Workout
-      </h1>
+      </h1> 
       <p className='text-xl text-electric-300 font-teko mb-3'>Select Exercise Category:</p>
       <div className='flex flex-col gap-4 flex-1 mb-7'>
         {/* Select weight training or cardio as category */}
@@ -81,98 +83,98 @@ export default function CreateWorkout() {
       </div>
       {/* Conditional rendering based on category for select option (weight training)*/}
       { workoutData.category === 'weight training' && (
-      <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
-        <div className='flex flex-col gap-4 flex-1'>
-          <p className='text-electric-300 font-teko text-xl'>Exercise Title:</p>
-          {/* Exercise Title input for weight training */}
-          <input
-            type='text'
-            placeholder='Exercise Title'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='title'
-            required
-            onChange={handleChange}
-            value={workoutData.title}
-          />
-          {/* Exercise load input for weight training */}
-          <p className='text-electric-300 font-teko text-xl'>Load (in lbs):</p>
-          <input
-            type='text'
-            placeholder='Load'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='load'
-            required
-            onChange={handleChange}
-            value={workoutData.load}
-          />
-          {/* Exercise reps input for weight training */}
-          <p className='text-electric-300 font-teko text-xl'>Reps:</p>
-          <input
-            type='text'
-            placeholder='Reps'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='reps'
-            required
-            onChange={handleChange}
-            value={workoutData.reps}
-          />
-          {/* Exercise sets input for weight training */}
-          <p className='text-electric-300 font-teko text-xl'>Sets:</p>
-          <input
-            type='text'
-            placeholder='Sets'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='sets'
-            required
-            onChange={handleChange}
-            value={workoutData.sets}
-          />
-          {/* Add exercise button for weight training to send to create POST request */}
-          <button 
-            disabled={loading}
-            className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
-              {loading ? 'Adding Exercise...' : 'Add Exercise'}
-            </button>
-            {/* Display error if one occurs */}
-            {error && <p className='text-electric-300 text-lg font-teko'>{error}</p>}
-        </div>
-      </form>
+        <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
+          <div className='flex flex-col gap-4 flex-1'>
+            <p className='text-electric-300 font-teko text-xl'>Exercise Title:</p>
+            {/* Exercise Title input for weight training */}
+            <input
+              type='text'
+              placeholder='Exercise Title'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='title'
+              required
+              onChange={handleChange}
+              value={workoutData.title}
+            />
+            {/* Exercise load input for weight training */}
+            <p className='text-electric-300 font-teko text-xl'>Load (in lbs):</p>
+            <input
+              type='text'
+              placeholder='Load'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='load'
+              required
+              onChange={handleChange}
+              value={workoutData.load}
+            />
+            {/* Exercise reps input for weight training */}
+            <p className='text-electric-300 font-teko text-xl'>Reps:</p>
+            <input
+              type='text'
+              placeholder='Reps'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='reps'
+              required
+              onChange={handleChange}
+              value={workoutData.reps}
+            /> 
+            {/* Exercise sets input for weight training */}
+            <p className='text-electric-300 font-teko text-xl'>Sets:</p>
+            <input
+              type='text'
+              placeholder='Sets'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='sets'
+              required
+              onChange={handleChange}
+              value={workoutData.sets}
+            />
+            {/* Add exercise button for weight training to send to create POST request */}
+            <button 
+              disabled={loading}
+              className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
+                {loading ? 'Adding Exercise...' : 'Add Exercise'}
+              </button>
+              {/* Display error if one occurs */}
+              {error && <p className='text-electric-300 text-xl font-teko'>{error}</p>}
+          </div>
+        </form>
       )}
-      {/* Conditional rendering based on category for select option (cardio)*/}
+      {/* Conditional rendering based on category for select option (cardio) */}
       {workoutData.category === 'cardio' && (
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
-        <div className='flex flex-col gap-4 flex-1'>
-          <p className='text-electric-300 font-teko text-xl'>Exercise Title:</p>
-          {/* Exercise title for cardio */}
-          <input
-            type='text'
-            placeholder='Exercise Title'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='title'
-            required
-            onChange={handleChange}
-            value={workoutData.title}
-          />
-          {/* Exercise duration for cardio */}
-          <p className='text-electric-300 font-teko text-xl'>Exercise Duration (minutes):</p>
-          <input
-            type='text'
-            placeholder='Exercise Duration'
-            className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-            id='duration'
-            required
-            onChange={handleChange}
-            value={workoutData.duration}
-          />
-          {/* Add exercise button for cardio to send to create POST request */}
-          <button 
-            disabled={loading}
-            className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
-              {loading ? 'Adding Exercise...' : 'Add Exercise'}
-            </button>
-            {/* Display error if one occurs */}
-            {error && <p className='text-electric-300 text-lg font-teko'>{error}</p>}
-        </div>
+          <div className='flex flex-col gap-4 flex-1'>
+            <p className='text-electric-300 font-teko text-xl'>Exercise Title:</p>
+            {/* Exercise title for cardio */}
+            <input
+              type='text'
+              placeholder='Exercise Title'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='title'
+              required
+              onChange={handleChange}
+              value={workoutData.title}
+            />
+            {/* Exercise duration for cardio */}
+            <p className='text-electric-300 font-teko text-xl'>Exercise Duration (minutes):</p>
+            <input
+              type='text'
+              placeholder='Exercise Duration'
+              className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
+              id='duration'
+              required
+              onChange={handleChange}
+              value={workoutData.duration}
+            />
+            {/* Add exercise button for cardio to send to create POST request */}
+            <button 
+              disabled={loading}
+              className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
+                {loading ? 'Adding Exercise...' : 'Add Exercise'}
+              </button>
+              {/* Display error if one occurs */}
+              {error && <p className='text-electric-300 text-xl font-teko'>{error}</p>}
+          </div>
         </form>
       )}
     </main>

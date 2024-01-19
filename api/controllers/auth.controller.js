@@ -11,7 +11,7 @@ export const signup = async (req, res, next) => {
   const hashedPassword = bcryptjs.hashSync(password, 10);
   // Make new user - save information inside database
   const newUser = new User({ username, email, password: hashedPassword, firstName, lastName });
-  // Save new user to database if successful
+  // Save new user to database if successful or send error
   try {
     await newUser.save();
     res.status(201).json('User created successfully!');
@@ -22,7 +22,7 @@ export const signup = async (req, res, next) => {
 
 // Sign in Controller
 export const signin = async (req, res, next) => {
-  // Email and password from request body
+  // Destructure email and password from request body
   const { email, password } = req.body;
   try {
     // Check if email is valid - if valid check password
@@ -38,7 +38,7 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     // Destructure password and rest of user information - remove password before sending back to user
     const { password: pass, ...rest } = validUser._doc;
-    // Save token as cookie
+    // Save token as cookie and send rest of user information except password
     res
       .cookie('access_token', token, { httpOnly: true })
       .status(200)
@@ -47,7 +47,7 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 }
-
+ 
 // Sign Out Controller
 export const signOut = async (req, res, next) => {
   // Clear cookie to sign out user

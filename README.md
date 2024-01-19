@@ -1,5 +1,5 @@
 ## Impetus Fitness
-Link to hosted application
+Link to hosted application 
 <br>
 <br>
 Impetus Fitness is a full stack web application with authentication that allows users to create and store a workout. When creating a workout, the user includes information like exercise category, name, load, reps, sets, and duration. The application then displays this information to the user on the Workout page. The user can also edit or delete a specific exercise in the workout by clicking the edit or delete icon. 
@@ -8,7 +8,7 @@ Impetus Fitness is a full stack web application with authentication that allows 
 **To set up a local copy, follow these simple steps:**  
 ```
 1. git clon https://github.com/jscoding10/impetus-fitness.git
-2. cd full-stack-fitness-application
+2. cd impetus-fitness
 3. npm install  
 4. npm run dev
 5. cd client
@@ -19,6 +19,9 @@ Steps two through four set up the server. The server runs on localhost:3000.
 <br>
 <br>
 Steps five through seven set up the client. The client runs on localhost:5173.
+<br>
+<br>
+For the local copy to work, you will need a MongoDB connection string and JWT Secret key in an .env file in the api folder.
 <br>
 <br>
 **The deployed version of Impetus Fitness can be found at:** 

@@ -1,10 +1,11 @@
+// Logo Component
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ImpetusLogo from '../../images/impetus-fitness-logo.png';
-
-export default function Logo() {
-  // Current user
+import ImpetusLogo from '../images/impetus-fitness-logo.png';
+ 
+export default function Logo() { 
+  // Current user from Redux
   const { currentUser } = useSelector((state) => state.user);
   return (
     <div className='flex' >

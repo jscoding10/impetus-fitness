@@ -4,9 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function UpdateWorkout() {
-  // Current user
+  // Current user from Redux
   const { currentUser } = useSelector((state) => state.user);
-  // Initialize use navigate
+  // Initialize use navigate 
   const navigate = useNavigate();
   // Initialize params
   const params = useParams();
@@ -23,47 +23,33 @@ export default function UpdateWorkout() {
   const [error, setError] = useState(false);
   // Loading state
   const [loading, setLoading] = useState(false);
-  // Workout category state
-  // const [workoutCategory, setWorkoutCategory] = useState({
-  //   category: ''
-  // });
 
   // Use effect to fetch workout data
   useEffect(() => {
     const fetchWorkout = async () => {
+      // ID of workout
       const workoutId = params.workoutId;
+      // GET request to api for specific workout
       const res = await fetch(`/api/workout/get/${workoutId}`);
       const data = await res.json();
+      // Console log message if data success is false
       if (data.success === false) {
         console.log(data.message);
         return;
       }
+      // Set form data with data from response
       setFormData(data);
-      // setWorkoutCategory(data);
-      
     };
+    // Call fetch workout
     fetchWorkout();
   }, []);
 
-  // Event handler for exercise category change (weight training or cardio) - sets category to selection option
-  // const handleCategoryChange = (e) => {
-  //   setWorkoutCategory({
-  //     [e.target.id]: e.target.value,
-  //   })
-  // }
-
-  // Handle change for form inputs
+  // Handle change for form inputs - save previous data and update changes
   const handleChange = (e) => {
-    // if (
-    //   e.target.type === 'number' ||
-    //   e.target.type === 'text' 
-    // ) {
       setFormData({
-        // ...workoutCategory,
         ...formData,
         [e.target.id]: e.target.value,
       });
-    // }
   };
 
   // Handle submit - POST request to database on update route with workout ID to ensure specific workout is updated
@@ -72,19 +58,21 @@ export default function UpdateWorkout() {
     try {
       setLoading(true);
       setError(false);
+      // POST request to api with specific workout id to update
       const res = await fetch(`/api/workout/update/${params.workoutId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Send form data and current user id
         body: JSON.stringify({
           ...formData,
-          // ...workoutCategory,
           userRef: currentUser._id,
         }),
       });
       const data = await res.json();
       setLoading(false);
+      // Set error if data success is false else navigate to '/workout' page
       if (data.success === false) {
         setError(data.message);
       } else {
@@ -119,7 +107,7 @@ export default function UpdateWorkout() {
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
           <p className='text-electric-300 font-teko text-xl'>Exercise Title:</p>
-          {/* Exercise Title input for weight training */}
+          {/* Exercise Title input for weight training */} 
           <input
             type='text'
             placeholder='Exercise Title'
@@ -169,7 +157,7 @@ export default function UpdateWorkout() {
               {loading ? 'Updating Exercise...' : 'Update Exercise'}
             </button>
             {/* Display error if one occurs */}
-            {error && <p className='text-electric-300 text-lg font-teko'>{error}</p>}
+            {error && <p className='text-electric-300 text-xl font-teko'>{error}</p>}
         </div>
       </form>
       )}
@@ -187,7 +175,7 @@ export default function UpdateWorkout() {
             required
             onChange={handleChange}
             value={formData.title}
-          />
+          /> 
           {/* Exercise duration for cardio */}
           <p className='text-electric-300 font-teko text-xl'>Exercise Duration (minutes):</p>
           <input
@@ -200,13 +188,13 @@ export default function UpdateWorkout() {
             value={formData.duration}
           />
           {/* Add exercise button for cardio to send to create POST request */}
-          <button 
+          <button  
             disabled={loading}
             className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
               {loading ? 'Updating Exercise...' : 'Update Exercise'}
             </button>
             {/* Display error if one occurs */}
-            {error && <p className='text-electric-300 text-lg font-teko'>{error}</p>}
+            {error && <p className='text-electric-300 text-xl font-teko'>{error}</p>}
         </div>
         </form>
       )}
@@ -214,61 +202,4 @@ export default function UpdateWorkout() {
   );
 }
 
-//   return (
-//     <main className='p-3 max-w-xl mx-auto'>
-//       <h1 className='text-3xl text-electric-300 text-center my-7 font-teko text-6xl'>
-//         Update Workout
-//       </h1>
-//       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
-//         <div className='flex flex-col gap-4 flex-1'>
-//           <p className='text-electric-300 font-teko text-lg'>Exercise Title:</p>
-//           <input
-//             type='text'
-//             placeholder='Exercise Title'
-//             className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-//             id='title'
-//             required
-//             onChange={handleChange}
-//             value={formData.title}
-//           />
-//           <p className='text-electric-300 font-teko text-lg'>Load (in lbs):</p>
-//           <input
-//             type='text'
-//             placeholder='Load'
-//             className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-//             id='load'
-//             required
-//             onChange={handleChange}
-//             value={formData.load}
-//           />
-//           <p className='text-electric-300 font-teko text-lg'>Reps:</p>
-//           <input
-//             type='text'
-//             placeholder='Reps'
-//             className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-//             id='reps'
-//             required
-//             onChange={handleChange}
-//             value={formData.reps}
-//           />
-//           <p className='text-electric-300 font-teko text-lg'>Sets:</p>
-//           <input
-//             type='text'
-//             placeholder='Sets'
-//             className='border-2 border-electric-300 p-3 rounded-lg placeholder-cinder-950 font-teko text-lg'
-//             id='sets'
-//             required
-//             onChange={handleChange}
-//             value={formData.sets}
-//           />
-//           <button 
-//             disabled={loading}
-//             className='my-5 bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 font-teko text-xl hover:underline'>
-//               {loading ? 'Updating Exercise...' : 'Update Exercise'}
-//             </button>
-//             {error && <p className='text-electric-300 text-sm'>{error}</p>}
-//         </div>
-//       </form>
-//     </main>
-//   );
-// }
+

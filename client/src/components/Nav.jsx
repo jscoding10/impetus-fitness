@@ -1,3 +1,4 @@
+// Nav Component 
 // import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -11,22 +12,25 @@ import {
 
 // Links in the Nav Bar
 const NavLinks = () => {
-  // Check if user authenticated
+  // Current user with Redux
   const { currentUser } = useSelector((state) => state.user)
-
   // Initialize use dispatch
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   // Handle sign out for sign out in Nav bar
   const handleSignOut = async () => {
     try {
+      // Dispatch sign out user start from Redux
       dispatch(signOutUserStart());
+        // Get request to api to sign out user
         const res = await fetch('api/auth/signout');
         const data = await res.json();
+        // Dispatch sign out user failure from Redux if data success is false
         if (data.success === false) {
           dispatch(signOutUserFailure(data.message));
           return;
         }
+        // Dispatch sign out user success from Redux if successful
         dispatch(signOutUserSuccess(data));
       } catch (error) {
         dispatch(signOutUserFailure(data.message));
@@ -53,7 +57,7 @@ const NavLinks = () => {
         )}
     </>
   )
-}
+} 
 
 // Nav bar
 export default function Nav () {
@@ -85,29 +89,28 @@ export default function Nav () {
 
     // Hook to listen for click event outside of mobile nav; when effect runs add handler above
     useEffect(() => {
-      document.addEventListener("mousedown", closeOpenMenus);
+      document.addEventListener('mousedown', closeOpenMenus);
     }, [closeOpenMenus]);
     
     return (
         <>
-            {/* Navbar in view above medium */}
-            {/* w-1/3 on nav bar */}
+            {/* Navbar in view above large */}
             <nav className='flex justify-end'>
-                <div className='hidden w-full justify-between md:flex text-heather-gray-300'>
+                <div className='hidden w-full justify-between lg:flex text-heather-gray-300'>
                     <NavLinks />
                 </div>
                 {/* Button to open and close navbar in mobile - call toggle navbar when click the icons */}
-                <div className='md:hidden'>
+                <div className='lg:hidden'>
                     <button className='text-heather-gray-300' onClick={toggleNavbar}>
                         {isOpen ? <X /> : <Menu /> }
                     </button>
                 </div>
             </nav>
-            {/* Mobile view links - close menu if click a link in Nav bar when open */}
+            {/* Mobile view links - close menu if click a link in Nav bar when open or when click outside */}
             {isOpen && (
                 <div 
                   ref={mobileNavRef} 
-                  className='md:hidden flex flex-col items-center basis-full text-heather-gray-300' 
+                  className='lg:hidden flex flex-col items-center basis-full text-heather-gray-300' 
                   onClick={() => setIsOpen(false)}
                 >
                     <NavLinks />

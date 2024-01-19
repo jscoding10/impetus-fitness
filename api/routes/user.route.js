@@ -7,16 +7,16 @@ const router = express.Router();
 
 router.get('/test', test);
 
-// Update User Router - Check if person is authenticated with cookie
+// Update User Router - Check if user is authenticated with cookie
 router.post('/update/:id', verifyToken, updateUser)
 
-// Delete User Route
+// Delete User Route - Check if user is authenticated with cookie
 router.delete('/delete/:id', verifyToken, deleteUser)
 
-// Get User Workout Route
+// Get User Workout Route - check if user is authenticated with cookie
 router.get('/workout/:id', verifyToken, getUserWorkouts)
 
-// Get User Info Route
+// Get User Info Route - check if user is authenticated with cookie
 router.get('/:id', verifyToken, getUser)
 
 export default router;

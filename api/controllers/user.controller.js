@@ -12,7 +12,7 @@ export const test = (req, res) => {
 
 // Update User Controller
 export const updateUser = async (req, res, next) => {
-  // Check if user id matches requesting user id
+  // Check if user id matches 
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only update your own account!'));
   // Hash password if update password
@@ -35,20 +35,20 @@ export const updateUser = async (req, res, next) => {
       // Return new (updated) information
       { new: true }
     );
-    // Destructure so password is not send back
+    // Destructure so password is not sent back
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
     } catch (error) {
       next(error);
     }
   };
-
+ 
 // Delete User Controller
 export const deleteUser = async (req, res, next) => {
-  // Check if user id matches requesting user id
+  // Check if user id matches 
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only delete your own account!'));
-  // Delete user if user matches request id and clear access token
+  // Delete user if user id matches and clear access token cookie
   try {
     await User.findByIdAndDelete(req.params.id);
     res.clearCookie('access_token');
@@ -60,27 +60,27 @@ export const deleteUser = async (req, res, next) => {
 
 // Get User Workouts Controller
 export const getUserWorkouts = async (req, res, next) => {
-  // Check if user id matches requesting user id
+  // Check if user id matches user id in url
   if (req.user.id === req.params.id) {
-    // Get workouts for user id
+    // Get workouts for user id in url
     try {
       const workouts = await Workout.find({ userRef: req.params.id });
       res.status(200).json(workouts);
     } catch (error) {
       next(error);
     }
-    // Return can only view own workout if user id does not match requesting user id
+    // Return can only view own workout if user id does not match user id in url
   } else {
     return next(errorHandler(401, 'You can only view your own workout!'));
   }
 };
-
 
 // Get User Info Controller
 export const getUser = async (req, res, next) => {
   // Find user information based on requesting user id
   try {
     const user = await User.findById(req.params.id);
+    // If user does not exist return 'User not found'
     if (!user) return next(errorHandler(404, 'User not found!'));
     // Destructure response so do not send user password
     const { password: pass, ...rest } = user._doc;
