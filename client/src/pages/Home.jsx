@@ -12,6 +12,11 @@ export default function Home() {
   const redirectSignUp = () => {
     navigate('/sign-up');
   }
+
+  // Function to navigate user to sign in page when button clicked
+  const redirectSignIn = () => {
+    navigate('/sign-in')
+  }
   
   return (
     <div>
@@ -20,14 +25,22 @@ export default function Home() {
           <h1 className='flex justify-center text-electric-300 text-4xl flex-1 font-teko text-6xl'>Impetus Fitness</h1>
           {/* Logo */}
           <img src={ImpetusLogo} className='h-64 w-64 flex justify-center mx-auto mt-5 mb-7' />
-          <h2 className='flex justify-center text-heather-gray-300 uppercase text-start font-teko text-2xl mb-5'>Store your daily workouts and achieve your fitness goals</h2>
+          <h2 className='flex justify-center text-heather-gray-300 uppercase text-center font-teko text-2xl mb-5'>Store your daily workouts and achieve your fitness goals</h2>
           <div className='flex justify-center'>
             {/* Get Started Button - Redirect to sign up page if click it */}
             <button 
-              className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 flex justify-center font-teko text-xl mb-10 w-64 hover:underline'
-              onClick={redirectSignUp}>
+              className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 flex justify-center font-teko text-xl md:mb-10 mb-5 w-64 hover:underline'
+              onClick={redirectSignUp}> 
               Get Started
-              </button>
+            </button>
+          </div>
+          <div className='flex justify-center'>
+            {/* Sign In Button (Only show on mobile view) - Redirect to sign in page if click it */}
+            <button 
+              className='md:hidden bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 flex justify-center font-teko text-xl mb-10 w-64 hover:underline'
+              onClick={redirectSignIn}> 
+              Sign In
+            </button>
           </div>
           {/* Image */}
           <div className='flex justify-center mx-auto max-w-4xl mb-10'>

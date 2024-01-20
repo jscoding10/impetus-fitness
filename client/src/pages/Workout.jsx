@@ -64,7 +64,7 @@ export default function Workout() {
         <div key={workout._id} className='flex justify-evenly mx-auto text-center py-5 bg-heather-gray-200 text-cinder-950 border border-electric-300 border-4 rounded-3xl max-w-2xl my-2'>
           {/* If workout category is weight training, display the following workout information to the user */}
           {workout.category === 'weight training' && (
-          <div className='flex gap-4 justify-evenly max-w-2xl h-full flex-1 font-teko text-2xl'>
+          <div className='flex gap-4 justify-evenly max-w-2xl h-full flex-1 font-teko max-[600px]:text-lg text-2xl'>
             <p className='' key={workout._id + 1}>{workout.title}</p>
             <p className='' key={workout._id + 2}>{workout.load} lbs</p>
             <p className='' key={workout._id + 3}>{workout.reps} reps</p>
@@ -73,7 +73,7 @@ export default function Workout() {
           )}
           {/* If workout category is cardio, display the following workout information to the user */}
           {workout.category === 'cardio' && (
-          <div className='flex gap-4 justify-evenly max-w-2xl h-full flex-1 font-teko text-2xl'>
+          <div className='flex gap-4 justify-evenly max-w-2xl h-full flex-1 font-teko max-[600px]:text-lg text-2xl'>
             <p className='' key={workout._id + 1}>{workout.title}</p>
             <p className='' key={workout._id + 2}>{workout.duration} minutes</p>
           </div>

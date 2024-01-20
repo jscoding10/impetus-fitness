@@ -51,7 +51,7 @@ export default function Welcome() {
         <div className='flex justify-center py-5'>
           {/* Direct user to Workout page if select this button */}
           <button 
-            className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 mx-auto w-1/2 font-teko text-xl mr-5 hover:underline'
+            className='bg-heather-gray-200 text-cinder-950 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 border-2 border-electric-300 mx-auto w-1/2 font-teko text-xl mr-3 hover:underline'
             onClick={redirectToWorkout}>
             View Workout
             </button>
