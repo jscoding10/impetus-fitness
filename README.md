@@ -1,41 +1,37 @@
 ## Impetus Fitness
-https://impetus-fitness.onrender.com/
+
+**Deployed version:** https://impetus-fitness.onrender.com/
+<br> 
 <br>
-<br>
-Impetus Fitness is a full stack web application with authentication that allows users to create and store a workout. When creating a workout, the user includes information like exercise category, name, load, reps, sets, and duration. The application then displays this information to the user on the Workout page. The user can also edit or delete a specific exercise in the workout by clicking the edit or delete icon. 
+Impetus Fitness is a full-stack web application with authentication that allows users to create and store a workout. When creating a workout, the user includes information like exercise category, name, load, reps, sets, and duration. The application then displays this information to the user on the Workout page. The user can also edit or delete a specific exercise in the workout by clicking the edit or delete icon. 
 
 ## Instructions
-**To set up a local copy, follow these simple steps:**  
-```
-1. git clon https://github.com/jscoding10/impetus-fitness.git
-2. cd impetus-fitness
-3. npm install  
-4. npm run dev
-5. cd client
-6. npm install
-7. npm run dev
-```
-Steps two through four set up the server. The server runs on localhost:3000.
-<br>
-<br>
-Steps five through seven set up the client. The client runs on localhost:5173.
-<br>
-<br>
-For the local copy to work, you will need a MongoDB connection string and JWT Secret key in an .env file in the api folder.
-<br>
-<br>
-**The deployed version of Impetus Fitness can be found at:** https://impetus-fitness.onrender.com/
-<br>
-<br>
-**How to use Impetus Fitness**
-<br>
-If you wish to use Impetus Fitness, sign up for an account or use the sign in information provided below:
+If you wish to use Impetus Fitness, please visit the <a href="https://impetus-fitness.onrender.com/">deployed version</a>. Next, sign up for an account or use the sign in information provided below for the demo account:
 <br>
 <div><b>Username:</b> impetusdemouser1@mail.com</div>
 <br>
 <div><b>Password:</b> impetusdemouser1@mail.com</div>
 <br>
 To create a workout, please navigate to the Create Workout page and add your exercises. To view your workout, please navigate to the Workout page. 
+<br>
+<br>
+
+**To set up a local copy, follow these simple steps:**  
+```
+1. cd impetus-fitness-main
+2. npm install  
+3. npm run dev
+4. cd client
+5. npm install
+6. npm run dev
+```
+Steps one through three set up the server. The server runs on localhost:3000.
+<br>
+<br>
+Steps four through six set up the client. The client runs on localhost:5173.
+<br>
+<br>
+For the local copy to work, you will need a MongoDB connection string and JWT Secret key in an .env file in the api folder.
 
 ## Technology Used
 <img align="left" alt="HTML" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
@@ -59,14 +55,16 @@ To create a workout, please navigate to the Create Workout page and add your exe
 <br>
 **Global State Management:** Redux
 <br>
+**Images:** Corcel on Bittensor network
 <br>
-Once the user is authenticated, the user can create a new workout by adding exercises on the Create Workout page. The user inputs information, such as exercise category, name, load, reps, sets, and duration, and clicks the Create Workout button when complete. The exercise information will then render on the Workout page so the user can view it. From the Workout page, the user can edit or delete the exercise if desired by clicking the appropriate icon. Further the user has the option to add another exercise to their routine if desired. From the Profile page, the user can update their account information, delete their account, or sign out.  
+<br>
+Once the user is authenticated, the user can create a new workout by adding exercises on the Create Workout page. The user inputs information, such as exercise category, name, load, reps, sets, and duration, and clicks the Create Workout button when complete. The exercise information will then render on the Workout page so the user can view it. From the Workout page, the user can edit or delete the exercise if desired by clicking the appropriate icon. Further, the user has the option to add another exercise to their routine if desired. From the Profile page, the user can update their account information, delete their account, or sign out.  
 
 ## Optimizations
 Originally, I had two different states and event handlers for the exercise category and the form data on the Create Workout page. However, I found that I could make my code more efficient by using one state and one event handler for everything on the Create Workout page. After this, I updated the Update Workout page with the corresponding state and event handler used on the Create Workout page. 
 
 ## Lessons Learned
-While completing Impetus Fitness, I improved my ability to integrate user authentication and responsive design into a full stack application. Further, I honed my ability to design an aesthetic user interface in React that fetches data from a database and displays it to the user. Moreover, I learned how to use conditionals to render data in the user interface from a database based upon what the user enters. Finally, I improved my ability to create a responsive Header component and implement conditionals to display different Nav links based upon if a user is authenticated. 
+While completing Impetus Fitness, I improved my ability to integrate user authentication and responsive design into a full-stack application. Further, I honed my ability to design an aesthetic user interface in React that fetches data from a database and displays it to the user. Moreover, I learned how to use conditionals to render data in the user interface from a database based upon what the user enters. Finally, I improved my ability to create a responsive Header component and implement conditionals to display different Nav links based upon if a user is authenticated. 
 
 ## Improvements
 One improvement to the application would be to add more features to the Welcome page. One feature might be a fitness goals input where users could create fitness goals for themselves. The fitness goals could be displayed on the Welcome page or a Goals page where users could track their goals and delete them once they are met.
