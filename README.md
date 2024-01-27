@@ -1,4 +1,5 @@
 ## Impetus Fitness
+<img width="60%" src="https://github.com/jscoding10/impetus-fitness/assets/147340427/0e5373e5-bb65-48f3-b81a-9a2c4e52c153" />
 
 **Deployed version:** https://impetus-fitness.onrender.com/
 <br> 
